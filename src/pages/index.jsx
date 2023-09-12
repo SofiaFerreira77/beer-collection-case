@@ -1,46 +1,48 @@
 import { useEffect, useState } from "react";
-import Layout from "../components/Layout"
-import Product from "../components/Product";
+import { fetchBeers } from "./api/InterfacePunkApi";
 
-// import { useFetch } from "../hooks/useFetch"
+import Layout from "../components/layout/Layout"
+import BootleListItem from "../components/BootleListItem";
+import BootleListRefinements from "../components/BootleListRefinements";
+import { Preloader } from "../components/ui/Preloader";
 
 export default function Home() {
-
-  const url = 'https://api.punkapi.com/v2/beers'
-  const options = {
-    method: 'GET'
-  };
-
   const [response, setResponse] = useState({
       data: null,
       loading: true
   })
 
   useEffect(function(){
-      fetch(url, options)
-          .then(resp => resp.json())
-          .then(json => setResponse({
-                  data: json,
-                  loading: false
-              }))
-  }, [url, options])
+    async function fetchData() {
+      try {
+        const data = await fetchBeers();
+        setResponse({
+          data: data,
+          loading: false
+        })
+      } catch (error) {
+        console.error('Error fetching beers:', error);
+        setResponse({...data, loading: false})
+      }
+    }
+  
+    fetchData();
+  }, []);
 
-  function showProducts(products){
-    return products.map((product, key) => <Product key={key} product={product}/>)
+  function showBottles(bottles){
+    return bottles.map((bottle, key) => <BootleListItem key={bottle.id} bottle={bottle}/>)
   }
 
   return (
     <Layout>
       <div className={`
-          flex flex-col justify-center items-center gap-3
-          bg-brown_2`}
+          container mx-auto
+          flex flex-col justify-center items-center gap-3`}
           >
-          <div className="container mx-auto">
-            <h3 className="text-xl mb-2"><b>Refinements:</b></h3>
-          </div>
+          <BootleListRefinements />
 
-          <div className={`container mx-auto flex flex-wrap justify-center items-center gap-9`}>
-              { !response.loading ? showProducts(response.data) : false }
+          <div className={`flex flex-wrap justify-center items-center gap-9 pb-10`}>
+              { !response.loading ? showBottles(response.data) : Preloader }
           </div>
       </div>
     </Layout>
