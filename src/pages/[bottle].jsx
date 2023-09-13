@@ -38,7 +38,7 @@ export default function Detail(props) {
 
   return (
     <Layout>
-      <div className="relative flex justify-center items-center gap-3">
+      <div className="container mx-auto relative flex justify-center items-center gap-3">
           { !response.loading ? showDetail(response.data) : Preloader }  
       </div>
     </Layout>

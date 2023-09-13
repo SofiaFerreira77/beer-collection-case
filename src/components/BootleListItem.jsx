@@ -30,10 +30,10 @@ export default function BootleListItem(props) {
             </div>
 
             <div className={`relative sm:absolute bottom-0 left-0 right-0 z-0 
-                            flex justify-center items-center gap-3
-                            p-4 h-28`}>
-                <h3 className={`font-semibold text-xl text-center`}>{props.bottle.name}</h3>
-                <p className={`text-sm text-center`}>{props.bottle.tagline}</p>
+                            flex justify-center items-center gap-2
+                            p-2 h-28`}>
+                <h3 className={`w-1/2 font-semibold text-md text-center text-white_2`}>{props.bottle.name}</h3>
+                <p className={`w-1/2 text-sm text-center`}>{props.bottle.tagline}</p>
             </div>
         </Link>
     </div>
