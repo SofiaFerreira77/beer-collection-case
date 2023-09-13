@@ -1,7 +1,7 @@
 export default function BottleItem(props) {
   return (
     <div key={props.bottle.id} href={`/${props.bottle.id}`}
-        className="min-h-screen h-fit p-6 flex gap-14">
+        className="min-h-screen h-fit p-6 sm:grid grid-cols-2 gap-14">
             
         <div className="bg-white p-3 drop-shadow-lg rounded-xl overflow-hidden flex justify-center">
             <img src={props.bottle.image_url} alt={props.bottle.tagline} className="min-w-full max-h-[100%] h-auto"/>
@@ -15,12 +15,9 @@ export default function BottleItem(props) {
               <p className={`text-sm`}>Rating: <span className={`text-gray_2`}>5</span></p>
           </div>
 
-          <table>
-            <thead>
-              <tr>
-                <td><p className={`text-sm mb-3`}>{props.bottle.description}</p></td>
-              </tr>
-            </thead>
+          <p className={`text-sm mb-3`}>{props.bottle.description}</p>
+
+          <table className="w-full">
             <tbody>
               <tr>
                 <td><b>ABV</b></td>
@@ -84,18 +81,20 @@ export default function BottleItem(props) {
           </table>
 
           <h2 className="font-bold text-lg">Ingredients</h2>
-          <table>
+          <table className="w-full">
             <tbody>
               <tr>
                 <td><b>Malt</b></td>
                 <td>
-                  <table>
-                    { props.bottle.ingredients.malt.map( (key, id) => 
-                      <tr key={id}> 
-                        <td>{key.name}</td>
-                        <td>{key.amount.value} {key.amount.unit}</td>
-                      </tr>
-                    )}
+                  <table className="w-full">
+                    <tbody>
+                      { props.bottle.ingredients.malt.map( (key, id) => 
+                        <tr key={id}> 
+                          <td>{key.name}</td>
+                          <td>{key.amount.value} {key.amount.unit}</td>
+                        </tr>
+                      )}
+                    </tbody>
                   </table>
                 </td>
               </tr>
@@ -103,12 +102,14 @@ export default function BottleItem(props) {
                 <td><b>Hops</b></td>
                 <td>
                   <table>
-                    { props.bottle.ingredients.hops.map( (key, id) => 
-                      <tr key={id}> 
-                        <td>{key.name}</td>
-                        <td>{key.amount.value} {key.amount.unit}</td>
-                      </tr>
-                    )}
+                    <tbody>
+                      { props.bottle.ingredients.hops.map( (key, id) => 
+                        <tr key={id}> 
+                          <td>{key.name}</td>
+                          <td>{key.amount.value} {key.amount.unit}</td>
+                        </tr>
+                      )}
+                    </tbody>
                   </table>
                 </td>
               </tr>
