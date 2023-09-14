@@ -22,7 +22,9 @@ module.exports = {
       brown_4: '#A67841CC',
       
       white: '#FFF',
-      white_2: '#F2E4C9'
+      white_2: '#F2E4C9',
+
+      yellow: '#ffcc33'
     }
   },
   plugins: [],
