@@ -1,19 +1,31 @@
+import { useState } from "react";
 import Link from "next/link";
-import {IconStared} from "../components/ui/Icons"
+import {IconLeft, IconStared} from "./ui/Icons"
 
-export default function BootleListItem(props) {
+export default function BeerItem(props) {
 
-  function addToCollection(bottle) {
-    console.log(bottle)
-  }
+  const [isFavorite, setFavorite] = useState(false)
+
+  // Function to add a beer to the wishlist
+  function addToCollection(beerId) {
+    const collection = JSON.parse(localStorage.getItem('collection')) || [];
+    collection.push(beerId);
+    localStorage.setItem('collection', JSON.stringify(collection));
+    setFavorite(true);
+  };
 
   return (
     <div className="relative" key={props.bottle.id}>
-        <button id={props.bottle.id} onClick={(e) => addToCollection(e.target.id)} 
-                className={`absolute z-20 right-2 top-2 p-2 text-2xl bg-white_2 text-gray_2 rounded-full
-                      transition-all hover:text-brown hover:bg-white`}>
-          {IconStared}
-        </button>
+
+        { !props.isOnCollection ?
+            <button id={props.bottle.id} onClick={() => addToCollection(props.bottle.id)} 
+                    className={`absolute z-20 right-2 top-2 p-2 text-2xl bg-white_2 text-gray_2 rounded-full
+                          transition-all hover:text-brown hover:bg-white`}>
+                    {isFavorite ? IconStared : IconLeft}
+            </button>
+          :
+          ''
+        }
 
         <Link href={`/${props.bottle.id}`}
             className="block group h-[460px] w-100

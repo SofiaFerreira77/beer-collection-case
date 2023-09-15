@@ -2,8 +2,7 @@ import { Fragment, useState } from "react"
 import { IconFilter, IconSort } from "./ui/Icons"
 import { Listbox, Transition } from '@headlessui/react'
 
-
-export default function BootleListRefinements(props) {
+export default function BeerRefinements(props) {
 
   const filterByOptions = [
     { id: 1, label: 'Name' },
@@ -19,7 +18,6 @@ export default function BootleListRefinements(props) {
   
   const [filterSelected, setFilterSelected] = useState([])
   const [sortBySelected, setSortBySelected] = useState(sortByOptions[0])
-
 
   return (
     <div className="relative z-30 container mx-auto flex justify-between items-center mt-2 p-7 gap-4">

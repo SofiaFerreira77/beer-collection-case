@@ -1,6 +1,6 @@
-export default function BottleItem(props) {
+export default function BeerDetail(props) {
   return (
-    <div key={props.bottle.id} href={`/${props.bottle.id}`}
+    <div key={props.bottle.id} href={`../bootle/${props.bottle.id}`}
         className="min-h-screen h-fit p-6 sm:grid grid-cols-2 gap-14">
             
         <div className="bg-white p-3 drop-shadow-lg rounded-xl overflow-hidden flex justify-center">
@@ -63,17 +63,19 @@ export default function BottleItem(props) {
                 <td><b>Method</b></td>
                 <td>
                   <table>
-                    <tr>
-                      <td><b>mash_temp</b></td>
-                      <td>{props.bottle.method.mash_temp[0].temp.value} {props.bottle.method.mash_temp[0].temp.unit}</td>
-                      <td><b>duration:</b>{props.bottle.method.mash_temp[0].duration}</td>
-                    </tr>
-                    <tr>
-                      <td><b>fermentation:</b>{props.bottle.method.fermentation.temp.value} {props.bottle.method.fermentation.temp.unit}</td>
-                    </tr>
-                    <tr>
-                      <td><b>twist:</b>{props.bottle.method.twist}</td>
-                    </tr>
+                    <tbody>
+                      <tr>
+                        <td><b>mash_temp</b></td>
+                        <td>{props.bottle.method.mash_temp[0].temp.value} {props.bottle.method.mash_temp[0].temp.unit}</td>
+                        <td><b>duration:</b>{props.bottle.method.mash_temp[0].duration}</td>
+                      </tr>
+                      <tr>
+                        <td><b>fermentation:</b>{props.bottle.method.fermentation.temp.value} {props.bottle.method.fermentation.temp.unit}</td>
+                      </tr>
+                      <tr>
+                        <td><b>twist:</b>{props.bottle.method.twist}</td>
+                      </tr>
+                    </tbody>
                   </table>
                 </td>
               </tr>
