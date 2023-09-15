@@ -5,12 +5,14 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Layout from "../components/layout/Layout";
 import Heading from "../components/ui/Heading";
+import Pagination from "../components/ui/Pagination";
+import BeerRefinements from "../components/BeerRefinements";
 import BeerList from "../components/BeerList";
 
-export default function Collection() {
+export default function List() {
   const [response, setResponse] = useState({
-      data: null,
-      loading: true
+    data: null,
+    loading: true
   })
 
   useEffect(function(){
@@ -18,7 +20,7 @@ export default function Collection() {
       const userRepository = new UserRepository();
       const beerRepository = new BeerRepository();
       const useCase = new BeerUseCase(beerRepository, userRepository);
-      const data = await useCase.getBeerCollection();
+      const data = await useCase.getAllBeers();
 
       try {
         setResponse({
@@ -26,27 +28,38 @@ export default function Collection() {
           loading: false
         })
       } catch (error) {
-        console.error('index.jsx - Error fetching beers:', error);
-        setResponse({
-          ...data, 
-          loading: false
-        })
+        console.error('list.jsx - Error fetching beers:', error);
+        setResponse({...data, loading: false})
       }
     }
-  
+
     fetchData();
   }, []);
 
+  // Handle filter change
+  const handleFilterChange = (e) => {
+    setFilterType(e.target.value);
+  };
+
+  // Handle sorting change
+  const handleSortChange = (e) => {
+    setSortType(e.target.value);
+  };
+
   return (
     <Layout>
-        <Heading title="My Collection" />
+        <Heading title="Beer" />
 
         <div className="w-full flex justify-center">
-          <Link href="/list"
-            className={`bg-gray text-yellow rounded-xl p-3 text-center`}>Show All</Link>
+          <Link href="/"
+            className={`bg-gray text-yellow rounded-xl p-3 text-center`}>Back to Collection</Link>
         </div>
 
+        <BeerRefinements />
+
         <BeerList beers={response.data} loading={response.loading} />
+
+        <Pagination />
     </Layout>
   )
 }
