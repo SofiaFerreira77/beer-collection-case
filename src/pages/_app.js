@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import {Unbounded} from 'next/font/google'
+import { Unbounded } from 'next/font/google'
 
 const unbounded = Unbounded({
   weight: ['300', '600', '900'],
