@@ -9,9 +9,14 @@ export default function BeerItem(props) {
   const [isFavorite, setFavorite] = useState(false)
   const useCase = new BeerUseCase(UserRepository);
 
+  // TODO 
+  // favorite
+  // addtoCollection
+  // removeFromCollection
+
   const handleAddToCollection = () => {
     useCase.addToCollection(props.beer.id);
-    useCase.removeFromCollection(props.beer.id);
+    // useCase.removeFromCollection(props.beer.id);
   };
 
   return (

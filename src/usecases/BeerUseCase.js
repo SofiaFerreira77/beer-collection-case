@@ -13,24 +13,46 @@ class BeerUseCase {
     }
 
     async getBeerCollection() {
-      // const allBeers = this.beerRepository.getAllBeers();
-      // const colection = this.userRepository.getBeerCollection() | []
+      const allBeers = await this.beerRepository.getAllBeers();
+      const savedCollection = await this.userRepository.getBeerCollection()
+      const filteredCollection = allBeers.filter((value) => savedCollection.includes(value.id));
 
-      return this.userRepository.getBeerCollection();
+      return filteredCollection;
     }
 
-    async addToCollection(beer)  {
-      try {
+    async addToCollection(beerId) {
+      const savedCollection = await this.userRepository.getBeerCollection()
+      console.log(savedCollection)
+
+      if (savedCollection.length !== 0) {
+        if (!savedCollection.includes(beerId)) {
+          savedCollection.push(beerId);
+          // isFavorite = true
+        }
+      } else {
+        savedCollection.push(beerId)
+        // isFavorite = true
+      }
+
+      const collectionToSave = JSON.stringify(savedCollection).sort((a, b) => a - b);
+      this.userRepository.addToCollection(collectionToSave);
+
+
+      /* try {
         await this.userRepository.addToCollection(beer);
       } catch (error) {
         console.error('Error adding beer to the collection:', error);
         throw error;
-      }
+      } */
       
     }
 
-    async removeFromCollection(beer) {
-      return this.userRepository.removeFromCollection(beer);
+    async removeFromCollection(beerId) {
+      const savedCollection = await this.userRepository.getBeerCollection()
+      savedCollection.filter((item) => item.id !== beerId);
+
+      const collectionToSave = JSON.stringify(savedCollection).sort((a, b) => a - b);
+      this.userRepository.removeFromCollection(collectionToSave);
     }
 
     async updateBeerInfo(beer) {
