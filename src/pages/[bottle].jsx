@@ -43,16 +43,16 @@ export default function Detail() {
 
   return (
     <Layout>
-      <div className="w-full flex justify-center">
-          <Link href="/"
-            className={`bg-gray text-yellow rounded-xl p-3 text-center`}>Back to Collection</Link>
-
-          <Link href="/list"
-            className={`bg-gray text-yellow rounded-xl p-3 text-center`}>Show All</Link>
+      <div className="container mx-auto relative flex justify-start items-start gap-3 text-xs my-5">
+          { !response.loading ? showDetail(response.data) : Preloader }  
       </div>
 
-      <div className="container mx-auto relative flex justify-center items-center gap-3">
-          { !response.loading ? showDetail(response.data) : Preloader }  
+      <div className="container mx-auto flex justify-between gap-5 py-10">
+          <Link href="/"
+            className={`bg-gray_2 text-gray rounded-xl p-3 text-center hover:bg-gray hover:text-white`}>Back to Collection</Link>
+
+          <Link href="/list"
+            className={`bg-gray text-yellow rounded-xl p-3 text-center hover:bg-gray_2 hover:text-white`}>Show All</Link>
       </div>
     </Layout>
   )

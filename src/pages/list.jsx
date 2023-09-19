@@ -52,7 +52,7 @@ export default function List() {
 
         <div className="w-full flex justify-center">
           <Link href="/"
-            className={`bg-gray text-yellow rounded-xl p-3 text-center`}>Back to Collection</Link>
+            className={`bg-gray text-yellow rounded-xl p-3 text-center hover:bg-gray_2 hover:text-white`}>Back to Collection</Link>
         </div>
 
         <BeerRefinements />

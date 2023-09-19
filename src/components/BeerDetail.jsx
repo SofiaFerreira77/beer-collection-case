@@ -1,13 +1,13 @@
 export default function BeerDetail(props) {
   return (
     <div key={props.bottle.id} href={`../bootle/${props.bottle.id}`}
-        className="min-h-screen h-fit p-6 sm:grid grid-cols-2 gap-14">
+        className="min-h-screen p-6 sm:grid grid-cols-2 gap-10 items-start">
             
-        <div className="bg-white p-3 drop-shadow-lg rounded-xl overflow-hidden flex justify-center">
-            <img src={props.bottle.image_url} alt={props.bottle.tagline} className="min-w-full max-h-[100%] h-auto"/>
+        <div className="sticky top-28 bg-white p-10 drop-shadow-lg rounded-xl overflow-hidden flex justify-center">
+            <img src={props.bottle.image_url} alt={props.bottle.tagline} className="max-h-[500px] h-auto"/>
         </div>
 
-        <div className={`flex flex-col gap-4`}>
+        <div className={`flex flex-col gap-4 sticky top-10`}>
           <h1 className={`font-semibold text-3xl`}>{props.bottle.name}</h1>
 
           <div className={`flex justify-between`}>
@@ -62,18 +62,27 @@ export default function BeerDetail(props) {
               <tr>
                 <td><b>Method</b></td>
                 <td>
-                  <table>
+                  <table className="w-full">
                     <tbody>
                       <tr>
                         <td><b>mash_temp</b></td>
                         <td>{props.bottle.method.mash_temp[0].temp.value} {props.bottle.method.mash_temp[0].temp.unit}</td>
-                        <td><b>duration:</b>{props.bottle.method.mash_temp[0].duration}</td>
+                        <td></td>
                       </tr>
                       <tr>
-                        <td><b>fermentation:</b>{props.bottle.method.fermentation.temp.value} {props.bottle.method.fermentation.temp.unit}</td>
+                        <td><b>duration:</b></td>
+                        <td>{props.bottle.method.mash_temp[0].duration}</td>
+                        <td></td>
                       </tr>
                       <tr>
-                        <td><b>twist:</b>{props.bottle.method.twist}</td>
+                        <td><b>fermentation:</b></td>
+                        <td>{props.bottle.method.fermentation.temp.value}{props.bottle.method.fermentation.temp.unit}</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><b>twist:</b></td>
+                        <td>{props.bottle.method.twist}</td>
+                        <td></td>
                       </tr>
                     </tbody>
                   </table>
@@ -103,7 +112,7 @@ export default function BeerDetail(props) {
               <tr>
                 <td><b>Hops</b></td>
                 <td>
-                  <table>
+                  <table className="w-full">
                     <tbody>
                       { props.bottle.ingredients.hops.map( (key, id) => 
                         <tr key={id}> 

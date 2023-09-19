@@ -43,7 +43,7 @@ export default function Collection() {
 
         <div className="w-full flex justify-center">
           <Link href="/list"
-            className={`bg-gray text-yellow rounded-xl p-3 text-center`}>Show All</Link>
+            className={`bg-gray text-yellow rounded-xl p-3 text-center mb-6 hover:bg-gray_2 hover:text-white`}>Add beer to Collection</Link>
         </div>
 
         <BeerList beers={response.data} loading={response.loading} />
