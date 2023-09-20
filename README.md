@@ -1,36 +1,61 @@
 image
 Demo: 
 
-## Frontend Case: Beer Collection
+# Frontend Case: Beer Collection
 
-A customer has requested a web-app that can keep track of the customers beer collection.
+## Presentation
+This project is a collection of some exercices with react, nextjs and tailwind for learning purpose.
+It is a web-app to track of the customers beer collection.
+
+## Built with and Using
+- [x] [Nextjs](https://nextjs.org/)
+- [x] [React](https://react.dev/)
+- [x] [Tailwind](https://tailwindcss.com/)
+- [x] Localstorage - to save entries on the device
+- [x] [PunkAPI](https://punkapi.com/documentation/v2)
 
 
-## Built with
-• [Nextjs](https://nextjs.org/)
-• [React](https://react.dev/)
-• [Tailwind](https://tailwindcss.com/)
-• You can use a remote API (https://punkapi.com/documentation/v2 or similar) to fill in additional data
+## App features
+- [x] Overview of bottles in the collection - grid layout
+- [x] Listing of all bottles - grid layout
 
+- [x] Sorting in list view (Sort by name, type, year, etc.).
+- [x] Filtering in list view (filter on type, year, etc.).
+- [x] Possibility to add/remove bottles from collection
 
-• Overview of bottles in the collection (flexbox or grid layout)
-  • Sorting in list view (Sort by name, type, year, etc.).
-  • Filtering in list view (filter on type, year, etc.).
-• Detailed view of bottle
-• Possibility to add/remove bottles from collection
-• You can use a remote API (https://punkapi.com/documentation/v2 or similar) to fill in additional data
-• Save entries on the device.
-
-If have time:
-• Add the user's comment / notes / rating.
-
+- [x] Detailed view of bottle
 
 ## Architecture
 Clean architecture
 
-• **Repository** folder that contain data access and storage logic. The repository pattern abstracts the data source (e.g., API, database) from the rest of your application, making it easier to switch data sources if needed.
-  
-• **Use Cases** folder here the use case acts as an intermediary between views (components/pages) and the repositories.
-  
-• **Hooks** 
-• **Pages** and **Components** view layer
+| Path |  Alias | Description  |
+|---|---|---|
+| `src/pages`  | -  | Next.js pages |
+| `src/components/layout`  | `@components/layout/*`  | Components used to organize the application's layout  |
+| `src/components/common`  | `@components/common/*`  | Global shared components (header and footer)  |
+| `src/components/ui`  | `@components/ui/*`  | More Complex ui related components (heading, icons, pagination, preloader)  |
+| `src/components/*`  | `@components/*`  | Reusable components to fill pages (BeerDetail, BeerItem, BeerList, BeerRefinements) |
+| `src/styles`  | `@styles/*`  | Global styles  |
+
+| `src/data/context/*`  | `@data/context/*`  | Context api to share state through the component  |
+| `src/data/hooks/*`  | `@data/hooks/*`  | Custom hooks  |
+
+| `src/usecases/*`  | `@usecases/*`  | Use case acts as an intermediary between *views (components/pages) / context* and the *repositories*  |
+
+| `src/repositories/*`  | `@repositories/*`  | Repositor - folder that contain data access and storage logic. The repository pattern abstracts the data source (e.g., API, database) from the rest of your application, making it easier to switch data sources if needed. |
+
+<!-- | `src/utils`  | `@utils/*`  | Custom utilities  |
+| `src/config`  | `@config/*`  | Configuration files for the application  | -->
+
+# Important package.json scripts
+- `dev` starts the development server
+- `build` compiles the application
+
+
+## Next Steps
+The concepts of Clean Architecture, SOLID and Functional Programming are reviewd. Next steps:
+
+- [] Routes (Dynamic)
+- [] Internationalization
+- [] API with another methods (firebase ie.)
+- [] State managment with Redux (only used contextApi)
