@@ -1,3 +1,4 @@
+import { BeerProvider } from '../data/context/BeerContext'
 import '../styles/globals.css'
 import { Unbounded } from 'next/font/google'
 
@@ -10,8 +11,10 @@ const unbounded = Unbounded({
 
 export default function App({ Component, pageProps }) {
   return (
-    <div className={unbounded.className}>
-      <Component {...pageProps} />
-    </div>
+    <BeerProvider>
+      <div className={unbounded.className}>
+        <Component {...pageProps} />
+      </div>
+    </BeerProvider>
   )
 }

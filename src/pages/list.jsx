@@ -1,7 +1,4 @@
-import BeerUseCase from "../usecases/BeerUseCase";
-import BeerRepository from "../repositories/BeerRepository"
-import UserRepository from "../repositories/UserRepository"
-import { useEffect, useState } from "react";
+import { useBeerContext } from '../data/context/BeerContext';
 import Link from "next/link";
 import Layout from "../components/layout/Layout";
 import Heading from "../components/ui/Heading";
@@ -10,41 +7,8 @@ import BeerRefinements from "../components/BeerRefinements";
 import BeerList from "../components/BeerList";
 
 export default function List() {
-  const [response, setResponse] = useState({
-    data: null,
-    loading: true
-  })
 
-  useEffect(function(){
-    async function fetchData() {
-      const userRepository = new UserRepository();
-      const beerRepository = new BeerRepository();
-      const useCase = new BeerUseCase(beerRepository, userRepository);
-      const data = await useCase.getAllBeers();
-
-      try {
-        setResponse({
-          data: data,
-          loading: false
-        })
-      } catch (error) {
-        console.error('list.jsx - Error fetching beers:', error);
-        setResponse({...data, loading: false})
-      }
-    }
-
-    fetchData();
-  }, []);
-
-  // Handle filter change
-  const handleFilterChange = (e) => {
-    setFilterType(e.target.value);
-  };
-
-  // Handle sorting change
-  const handleSortChange = (e) => {
-    setSortType(e.target.value);
-  };
+  const { allBeers, setAllBeers } = useBeerContext();
 
   return (
     <Layout>
@@ -57,7 +21,7 @@ export default function List() {
 
         <BeerRefinements />
 
-        <BeerList beers={response.data} loading={response.loading} />
+        <BeerList beers={allBeers.data} loading={allBeers.loading}/>
 
         <Pagination />
     </Layout>
