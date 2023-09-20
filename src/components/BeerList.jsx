@@ -4,7 +4,7 @@ import { Preloader } from "./ui/Preloader"
 export default function BeerList(props) {
     function showBottles(beers) {
         if (beers) {
-            return beers.map((beer, index) => <BeerItem key={index} beer={beer} isOnCollection={beer.isOnCollection} />)
+            return beers.map((beer, index) => <BeerItem key={index} beer={beer} showCollectionOnly={props.showCollectionOnly} />)
         }
     }
 

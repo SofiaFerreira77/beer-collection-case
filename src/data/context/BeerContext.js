@@ -10,11 +10,14 @@ export function useBeerContext() {
 }
 
 export function BeerProvider({ children }) {
+  const userRepository = new UserRepository();
+  const beerRepository = new BeerRepository();
+  const useCase = new BeerUseCase(beerRepository, userRepository);
 
-  const [allBeers, setAllBeers] = useState([]);
+  const [allBeers, setAllBeers] = useState({ data: [], loading: true });
   const [collectionBeers, setCollectionBeers] = useState([]);
-  const [filters, setFilters] = useState('collection');
-  const [orderBy, setOrderBy] = useState('name');
+  const [filters, setFilters] = useState(null);
+  const [orderBy, setOrderBy] = useState({ type: 'abv' });
 
   const value = {
     allBeers,
@@ -27,15 +30,10 @@ export function BeerProvider({ children }) {
     setOrderBy
   };
 
-  useEffect(function(){
+  useEffect(() => {
     async function fetchData() {
-      const userRepository = new UserRepository();
-      const beerRepository = new BeerRepository();
-      const useCase = new BeerUseCase(beerRepository, userRepository);
-      const allBeersData = await useCase.getAllBeers();
-      const collectionData = await useCase.getBeerCollection();
-
       try {
+        const allBeersData = await useCase.getAllBeers(filters, orderBy);
         setAllBeers({
           data: allBeersData,
           loading: false
@@ -47,6 +45,15 @@ export function BeerProvider({ children }) {
           loading: false
         })
       }
+    }
+
+    fetchData();
+  }, [filters, orderBy]);
+
+
+  useEffect(() => {
+    async function fetchData() {
+      const collectionData = await useCase.getBeerCollection();
 
       try {
         setCollectionBeers({
@@ -54,16 +61,17 @@ export function BeerProvider({ children }) {
           loading: false
         })
       } catch (error) {
-        console.error('All Beers - Error fetching beers:', error);
+        console.error('Beers Collection - Error fetching beers:', error);
         setCollectionBeers({
           ...collectionData,
           loading: false
         })
       }
     }
-  
+
     fetchData();
-  }, []);
+  }, [])
+
 
   return <BeerContext.Provider value={value}>{children}</BeerContext.Provider>;
 }
