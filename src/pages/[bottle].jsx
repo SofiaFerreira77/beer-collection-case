@@ -47,7 +47,7 @@ export default function Detail() {
           { !response.loading ? showDetail(response.data) : Preloader }  
       </div>
 
-      <div className="container mx-auto flex justify-between gap-5 py-10">
+      <div className="container mx-auto flex justify-between gap-5 py-10 px-6">
           <Link href="/"
             className={`bg-gray_2 text-gray rounded-xl p-3 text-center hover:bg-gray hover:text-white`}>Back to Collection</Link>
 

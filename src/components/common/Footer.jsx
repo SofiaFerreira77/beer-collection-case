@@ -7,9 +7,9 @@ export default function Footer(props) {
                             flex flex-col items-center justify-center
                             bg-gray py-6">
             <a href={props.developer.link} target="_blank" rel="no-follow"
-                className="flex justify-center items-center gap-2 
+                className={`flex justify-center items-center gap-2 
                         text-white_2 text-center text-xs 
-                        transition-colors hover:text-white">
+                        transition-colors hover:text-white`}>
                 {IconCode}
                 {props.developer.label}
                 <span className="font-semibold">{props.developer.name}</span>
