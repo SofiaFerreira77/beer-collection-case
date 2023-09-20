@@ -18,11 +18,9 @@ It is a web-app to track of the customers beer collection.
 ## App features
 - [x] Overview of bottles in the collection - grid layout
 - [x] Listing of all bottles - grid layout
-
-- [x] Sorting in list view (Sort by name, type, year, etc.).
+- [x] Sorting in list view (Sort by abv, ibu, srm, ph).
 - [x] Filtering in list view (filter on type, year, etc.).
 - [x] Possibility to add/remove bottles from collection
-
 - [x] Detailed view of bottle
 
 ## Architecture
@@ -36,26 +34,20 @@ Clean architecture
 | `src/components/ui`  | `@components/ui/*`  | More Complex ui related components (heading, icons, pagination, preloader)  |
 | `src/components/*`  | `@components/*`  | Reusable components to fill pages (BeerDetail, BeerItem, BeerList, BeerRefinements) |
 | `src/styles`  | `@styles/*`  | Global styles  |
-
 | `src/data/context/*`  | `@data/context/*`  | Context api to share state through the component  |
 | `src/data/hooks/*`  | `@data/hooks/*`  | Custom hooks  |
-
 | `src/usecases/*`  | `@usecases/*`  | Use case acts as an intermediary between *views (components/pages) / context* and the *repositories*  |
-
 | `src/repositories/*`  | `@repositories/*`  | Repositor - folder that contain data access and storage logic. The repository pattern abstracts the data source (e.g., API, database) from the rest of your application, making it easier to switch data sources if needed. |
 
-<!-- | `src/utils`  | `@utils/*`  | Custom utilities  |
-| `src/config`  | `@config/*`  | Configuration files for the application  | -->
 
-# Important package.json scripts
+## Important package.json scripts
 - `dev` starts the development server
 - `build` compiles the application
-
 
 ## Next Steps
 The concepts of Clean Architecture, SOLID and Functional Programming are reviewd. Next steps:
 
-- [] Routes (Dynamic)
-- [] Internationalization
-- [] API with another methods (firebase ie.)
-- [] State managment with Redux (only used contextApi)
+- [ ] Routes (Dynamic)
+- [ ] Internationalization
+- [ ] API with another methods (firebase ie.)
+- [ ] State managment with Redux (only used contextApi)
