@@ -22,11 +22,11 @@ export default function BeerDetail(props) {
         <table className="w-full">
           <tbody>
             <tr>
-              <td><b>ABV</b></td>
+              <td><b>Alcohol (By Volume)</b></td>
               <td>{props.bottle.abv}</td>
             </tr>
             <tr>
-              <td><b>ibu</b></td>
+              <td><b>IBU - Bitterness</b></td>
               <td>{props.bottle.ibu}</td>
             </tr>
             <tr>
@@ -42,23 +42,23 @@ export default function BeerDetail(props) {
               <td>{props.bottle.ebc}</td>
             </tr>
             <tr>
-              <td><b>srm</b></td>
+              <td><b>SRM - Color assessment</b></td>
               <td>{props.bottle.srm}</td>
             </tr>
             <tr>
-              <td><b>ph</b></td>
+              <td><b>Ph</b></td>
               <td>{props.bottle.ph}</td>
             </tr>
             <tr>
-              <td><b>attenuation_level</b></td>
+              <td><b>Attenuation Level</b></td>
               <td>{props.bottle.attenuation_level}</td>
             </tr>
             <tr>
-              <td><b>volume</b></td>
+              <td><b>Volume</b></td>
               <td>{props.bottle.volume.value} {props.bottle.volume.unit}</td>
             </tr>
             <tr>
-              <td><b>boil_volume</b></td>
+              <td><b>Boil Volume</b></td>
               <td>{props.bottle.boil_volume.value} {props.bottle.boil_volume.unit}</td>
             </tr>
             <tr>
@@ -67,22 +67,22 @@ export default function BeerDetail(props) {
                 <table className="w-full">
                   <tbody>
                     <tr>
-                      <td><b>mash_temp</b></td>
+                      <td><b>Mash temp</b></td>
                       <td>{props.bottle.method.mash_temp[0].temp.value} {props.bottle.method.mash_temp[0].temp.unit}</td>
                       <td></td>
                     </tr>
                     <tr>
-                      <td><b>duration:</b></td>
+                      <td><b>Duration:</b></td>
                       <td>{props.bottle.method.mash_temp[0].duration}</td>
                       <td></td>
                     </tr>
                     <tr>
-                      <td><b>fermentation:</b></td>
+                      <td><b>Fermentation:</b></td>
                       <td>{props.bottle.method.fermentation.temp.value}{props.bottle.method.fermentation.temp.unit}</td>
                       <td></td>
                     </tr>
                     <tr>
-                      <td><b>twist:</b></td>
+                      <td><b>Twist:</b></td>
                       <td>{props.bottle.method.twist}</td>
                       <td></td>
                     </tr>

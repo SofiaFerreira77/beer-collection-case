@@ -18,3 +18,7 @@ table th,
 table td{
     padding: .3rem;
 }
+
+b {
+    font-weight: 600;
+}
