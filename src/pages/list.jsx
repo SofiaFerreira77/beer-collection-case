@@ -12,7 +12,7 @@ export default function List() {
 
   return (
     <Layout>
-      <Heading title="Beer" />
+      <Heading title="All Beers" />
 
       <div className="w-full flex justify-center">
         <Link href="/"
