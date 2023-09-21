@@ -8,9 +8,9 @@ export default function BeerRefinements(props) {
   const { filters, setFilters, orderBy, setOrderBy } = useBeerContext();
 
   const filterByOptions = [
-    { id: 1, label: 'Name' },
-    { id: 2, label: 'Type' },
-    { id: 3, label: 'Year' }
+    { id: 1, type: '', label: 'Name' },
+    { id: 2, type: '', label: 'Type' },
+    { id: 3, type: '', label: 'Year' }
   ]
 
   const sortByOptions = [
@@ -27,8 +27,8 @@ export default function BeerRefinements(props) {
 
       <div className="flex gap-2">
         <Listbox as="div" value={filters || []} onChange={setFilters}
-          className="relative text-left">
-          <Listbox.Button className="flex items-center gap-1 px-3 py-2 text-xs text-brown hover:text-gray">
+          className="relative text-left cursor-not-allowed" disabled>
+          <Listbox.Button className="flex items-center gap-1 px-3 py-2 text-xs text-gray">
             {IconFilter}
             <span className="text-gray truncate">Filter by</span>
             <span className="font-semibold">{filters?.label}</span>
