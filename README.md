@@ -1,5 +1,12 @@
-image
-Demo: 
+<br />
+<p align="center">
+  <a href="https://sofiaferreira77.github.io/beer-collection-case/list">
+    <img src="https://ibb.co/nkcNjYn" alt="Beers List Page" >
+  </a>
+  <a href="https://sofiaferreira77.github.io/beer-collection-case/list">
+    <img src="https://ibb.co/dmjvFXv" alt="Beer Detail Page" >
+  </a>
+</p>
 
 # Frontend Case: Beer Collection
 
