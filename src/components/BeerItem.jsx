@@ -1,6 +1,6 @@
 import { useBeerContext } from '../data/context/BeerContext';
 import Link from "next/link";
-import { IconLeft, IconStared } from "./ui/Icons"
+import { IconStaredSolid, IconStared } from "./ui/Icons"
 
 export default function BeerItem(props) {
   const { collectionBeers, setCollectionBeers, allBeers, setAllBeers } = useBeerContext();
@@ -20,12 +20,12 @@ export default function BeerItem(props) {
   return (
     <div className="relative" key={props.beer.id}>
 
-      {!props.collectionPage ?
+      {!props.showCollectionOnly ?
         <button id={props.beer.id}
-          onClick={toggleFavorite}
+          onClick={toggleFavourite}
           className={`absolute z-20 right-2 top-2 p-2 text-2xl bg-white_2 text-gray_2 rounded-full
                           transition-all hover:text-brown hover:bg-white`}>
-          {collectionArray.includes(props.beer.id) ? IconStared : IconLeft}
+          {props.beer.isFavourite ? IconStaredSolid : IconStared }
         </button>
         :
         <></>
