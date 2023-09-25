@@ -1,17 +1,17 @@
-export default class UserRepository { 
+export default class UserRepository {
   async getBeerCollection() {
     return JSON.parse(localStorage.getItem('collection'));
   }
 
-  async addToCollection(beerId) {
-    let collection = JSON.parse(localStorage.getItem('collection'));
-    collection.push(beerId);
+  async addToCollection(collection) {
     localStorage.setItem('collection', JSON.stringify(collection));
   }
 
-  async removeFromCollection(beerId) {
-    let collection = Object.values(JSON.parse(localStorage.getItem('collection')));
-    let filter = collection.filter((item) => item !== beerId);
-    localStorage.setItem('collection', JSON.stringify(filter));
+  async removeFromCollection(collection) {
+    localStorage.setItem('collection', JSON.stringify(collection));
+  }
+
+  async updateBeerRating(ratedBeers) {
+    localStorage.setItem('ratedBeers', JSON.stringify(ratedBeers));
   }
 }

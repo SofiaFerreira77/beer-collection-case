@@ -7,11 +7,7 @@ export default function BeerRefinements(props) {
 
   const { filters, setFilters, orderBy, setOrderBy } = useBeerContext();
 
-  const filterByOptions = [
-    { id: 1, type: '', label: 'Name' },
-    { id: 2, type: '', label: 'Type' },
-    { id: 3, type: '', label: 'Year' }
-  ]
+  const filterByOptions = []
 
   const sortByOptions = [
     { id: 1, type: 'abv', label: 'Alcohol (By Volume)' },

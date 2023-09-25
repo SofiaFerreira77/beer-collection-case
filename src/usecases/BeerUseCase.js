@@ -60,42 +60,21 @@ class BeerUseCase {
   }
 
   async addToCollection(beerId) {
-    this.userRepository.addToCollection(beerId);
-    /* const savedCollection = await this.userRepository.getBeerCollection()
-    console.log(savedCollection)
-
-    if (savedCollection.length !== 0) {
-      if (!savedCollection.includes(beerId)) {
-        savedCollection.push(beerId);
-      }
-    } else {
-      savedCollection.push(beerId)
-    }
-
-    const collectionToSave = JSON.stringify(savedCollection);
-    this.userRepository.addToCollection(collectionToSave); */
-
-    /* try {
-      await this.userRepository.addToCollection(beer);
-    } catch (error) {
-      console.error('Error adding beer to the collection:', error);
-      throw error;
-    } */
+    let collection = JSON.parse(localStorage.getItem('collection'));
+    collection.push(beerId);
+    this.userRepository.addToCollection(collection);
   }
 
   async removeFromCollection(beerId) {
-    this.userRepository.removeFromCollection(beerId);
-    /* const savedCollection = await this.userRepository.getBeerCollection()
-    savedCollection.filter((item) => item !== beerId);
-
-    console.log(savedCollection);
-
-    const collectionToSave = JSON.stringify(savedCollection);
-    this.userRepository.removeFromCollection(collectionToSave); */
+    let collection = Object.values(JSON.parse(localStorage.getItem('collection')));
+    let filteredCollection = collection.filter((item) => item !== beerId);
+    this.userRepository.removeFromCollection(filteredCollection);
   }
 
-  async updateBeerInfo(beer) {
-    return this.userRepository.updateBeerInfo(beer, rating, notes);
+  async updateBeerRating(beer, rating) {
+    let ratedBeers = JSON.parse(localStorage.getItem('ratedBeers'));
+    ratedBeers.push({ id: beerId, rating: rating});
+    this.userRepository.updateBeerRating(ratedBeers);
   }
 }
 

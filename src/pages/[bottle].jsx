@@ -28,7 +28,7 @@ export default function Detail() {
           loading: false
         })
       } catch (error) {
-        console.error('bottle Error fetching beers:', error);
+        console.error('Error fetching beers:', error);
         setResponse({ loading: false })
       }
     }
