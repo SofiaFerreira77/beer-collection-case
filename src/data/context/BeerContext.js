@@ -19,6 +19,28 @@ export function BeerProvider({ children }) {
   const [filters, setFilters] = useState(null);
   const [orderBy, setOrderBy] = useState({ type: 'abv' });
 
+
+  const toggleFavorite = async (beerId, isFavorite) => {
+    if (isFavorite) {
+      try {
+        await useCase.removeFromCollection(beerId);
+        collectionBeers.data.filter((item) => item !== beerId);
+        isFavorite = false;
+      } catch (error) {
+        console.error('Error toggling favorite:', error);
+      }
+
+    } else {
+      try {
+        await useCase.addToCollection(beerId);
+        collectionBeers.data.push(beerId);
+        isFavorite = true;
+      } catch (error) {
+        console.error('Error toggling favorite:', error);
+      }
+    }
+  };
+
   const value = {
     allBeers,
     setAllBeers,
@@ -27,7 +49,8 @@ export function BeerProvider({ children }) {
     filters,
     setFilters,
     orderBy,
-    setOrderBy
+    setOrderBy,
+    toggleFavorite
   };
 
   useEffect(() => {
@@ -40,15 +63,12 @@ export function BeerProvider({ children }) {
         })
       } catch (error) {
         console.error('All Beers - Error fetching beers:', error);
-        setAllBeers({
-          ...allBeersData,
-          loading: false
-        })
+        allBeers.loading = false
       }
     }
 
     fetchData();
-  }, [filters, orderBy]);
+  }, [filters, orderBy, toggleFavorite]);
 
 
   useEffect(() => {
@@ -62,16 +82,12 @@ export function BeerProvider({ children }) {
         })
       } catch (error) {
         console.error('Beers Collection - Error fetching beers:', error);
-        setCollectionBeers({
-          ...collectionData,
-          loading: false
-        })
+        collectionBeers.loading = false;
       }
     }
 
     fetchData();
-  }, [])
-
+  }, [toggleFavorite])
 
   return <BeerContext.Provider value={value}>{children}</BeerContext.Provider>;
 }

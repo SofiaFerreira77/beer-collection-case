@@ -1,18 +1,17 @@
-const BASE_URL = 'https://api.punkapi.com/v2';
 export default class UserRepository { 
   async getBeerCollection() {
     return JSON.parse(localStorage.getItem('collection'));
   }
 
-  async addToCollection(collection) {    
-    localStorage.setItem('collection', collection);
+  async addToCollection(beerId) {
+    let collection = JSON.parse(localStorage.getItem('collection'));
+    collection.push(beerId);
+    localStorage.setItem('collection', JSON.stringify(collection));
   }
 
-  async removeFromCollection(collection) {
-    localStorage.setItem('collection', collection);
-  }
-
-  async updateBeerInfo(beerId: string, rating?: number, notes?: string) {
-    //localStorage.setItem('beers', );
+  async removeFromCollection(beerId) {
+    let collection = Object.values(JSON.parse(localStorage.getItem('collection')));
+    let filter = collection.filter((item) => item !== beerId);
+    localStorage.setItem('collection', JSON.stringify(filter));
   }
 }

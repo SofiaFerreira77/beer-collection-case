@@ -10,9 +10,8 @@ class BeerUseCase {
     let filteredBeers = [];
 
     allBeers.forEach(beer => {
-
-      const isFavourite = savedCollection.includes(beer.id);
-      beer.isFavourite = isFavourite;
+      const isFavorite = savedCollection.includes(beer.id);
+      beer.isFavorite = isFavorite;
 
       if (filterBy) {
         const condition = (filterBy.type && beer.type == filterBy.type) || (filterBy.year && beer.type == filterBy.year);
@@ -56,27 +55,25 @@ class BeerUseCase {
     return filteredCollection;
   }
 
-  async getBeerById(beer) {
-    return this.beerRepository.getBeerById(beer);
+  async getBeerById(beerId) {
+    return this.beerRepository.getBeerById(beerId);
   }
 
   async addToCollection(beerId) {
-    console.log('addToCollection: ' + beerId)
-    const savedCollection = await this.userRepository.getBeerCollection()
+    this.userRepository.addToCollection(beerId);
+    /* const savedCollection = await this.userRepository.getBeerCollection()
     console.log(savedCollection)
 
     if (savedCollection.length !== 0) {
       if (!savedCollection.includes(beerId)) {
         savedCollection.push(beerId);
-        // isFavorite = true
       }
     } else {
       savedCollection.push(beerId)
-      // isFavorite = true
     }
 
-    const collectionToSave = JSON.stringify(savedCollection).sort((a, b) => a - b);
-    this.userRepository.addToCollection(collectionToSave);
+    const collectionToSave = JSON.stringify(savedCollection);
+    this.userRepository.addToCollection(collectionToSave); */
 
     /* try {
       await this.userRepository.addToCollection(beer);
@@ -87,11 +84,14 @@ class BeerUseCase {
   }
 
   async removeFromCollection(beerId) {
-    const savedCollection = await this.userRepository.getBeerCollection()
-    savedCollection.filter((item) => item.id !== beerId);
+    this.userRepository.removeFromCollection(beerId);
+    /* const savedCollection = await this.userRepository.getBeerCollection()
+    savedCollection.filter((item) => item !== beerId);
 
-    const collectionToSave = JSON.stringify(savedCollection).sort((a, b) => a - b);
-    this.userRepository.removeFromCollection(collectionToSave);
+    console.log(savedCollection);
+
+    const collectionToSave = JSON.stringify(savedCollection);
+    this.userRepository.removeFromCollection(collectionToSave); */
   }
 
   async updateBeerInfo(beer) {
