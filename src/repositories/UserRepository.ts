@@ -1,6 +1,6 @@
 export default class UserRepository {
   async getBeerCollection() {
-    return JSON.parse(localStorage.getItem('collection'));
+    return JSON.parse(localStorage.getItem('collection')) || [];
   }
 
   async addToCollection(collection) {
