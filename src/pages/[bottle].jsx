@@ -36,14 +36,14 @@ export default function Detail() {
     fetchData();
   }, []);
 
-  function showDetail(details) {
-    return details.map((bottleDetail, index) => <BeerDetail key={index} bottle={bottleDetail} />)
-  }
-
   return (
     <Layout>
       <div className="container mx-auto relative flex justify-start items-start gap-3 text-xs my-5">
-        {!response.loading ? showDetail(response.data) : Preloader}
+        {!response.loading ? 
+          response.data.map((bottleDetail, index) => <BeerDetail key={index} bottle={bottleDetail} />)
+          :
+          <Preloader />
+        }
       </div>
 
       <div className="container mx-auto flex justify-between gap-5 py-10 px-6">
