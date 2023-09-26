@@ -60,14 +60,14 @@ class BeerUseCase {
   }
 
   async addToCollection(beerId) {
-    let collection = JSON.parse(localStorage.getItem('collection'));
+    let collection = JSON.parse(localStorage.getItem('collection')) || [];
     collection.push(beerId);
     this.userRepository.addToCollection(collection);
   }
 
   async removeFromCollection(beerId) {
     let collection = Object.values(JSON.parse(localStorage.getItem('collection')));
-    let filteredCollection = collection.filter((item) => item !== beerId);
+    let filteredCollection = collection.filter((item) => item !== beerId) || [];
     this.userRepository.removeFromCollection(filteredCollection);
   }
 

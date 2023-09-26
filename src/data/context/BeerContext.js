@@ -19,7 +19,6 @@ export function BeerProvider({ children }) {
   const [filters, setFilters] = useState(null);
   const [orderBy, setOrderBy] = useState({ type: 'abv' });
 
-
   const toggleFavorite = async (beerId, isFavorite) => {
     if (isFavorite) {
       try {
@@ -27,7 +26,7 @@ export function BeerProvider({ children }) {
         collectionBeers.data.filter((item) => item !== beerId);
         isFavorite = false;
       } catch (error) {
-        console.error('Error toggling favorite:', error);
+        console.error('Error removing from favorite:', error);
       }
 
     } else {
@@ -36,7 +35,7 @@ export function BeerProvider({ children }) {
         collectionBeers.data.push(beerId);
         isFavorite = true;
       } catch (error) {
-        console.error('Error toggling favorite:', error);
+        console.error('Error adding on favorite:', error);
       }
     }
   };

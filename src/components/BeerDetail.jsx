@@ -1,65 +1,72 @@
-export default function BeerDetail(props) {
+
+export default function BeerDetail({ bottle }) {
+  const { id, name, image_url, tagline, 
+    first_brewed, description, abv, ibu, target_fg, 
+    target_og, ebc, srm, ph, attenuation_level, boil_volume, volume, 
+    method, ingredients, food_pairing, brewers_tips, 
+    contributed_by } = bottle;
+
   return (
-    <div key={props.bottle.id} href={`../bootle/${props.bottle.id}`}
+    <div key={id} href={`../bootle/${id}`}
       className="min-h-screen p-6 md:grid grid-cols-2 gap-10 items-start">
 
       <div className={`flex justify-center
                         md:sticky top-28 mb-10 p-10
                       bg-white drop-shadow-lg rounded-xl overflow-hidden`}>
-        <img src={props.bottle.image_url} alt={props.bottle.tagline} className="max-h-[500px] h-auto" />
+        <img src={image_url} alt={tagline} className="max-h-[500px] h-auto" />
       </div>
 
       <div className={`flex flex-col gap-4 sticky top-10`}>
-        <h1 className={`font-semibold text-3xl`}>{props.bottle.name}</h1>
+        <h1 className={`font-semibold text-3xl`}>{name}</h1>
 
         <div className={`flex justify-between`}>
-          <p className={`text-sm`}> Year: <span className={`text-gray_2`}>{props.bottle.first_brewed}</span></p>
+          <p className={`text-sm`}> Year: <span className={`text-gray_2`}>{first_brewed}</span></p>
           <p className={`text-sm`}>Rating: <span className={`text-gray_2`}>5</span></p>
         </div>
 
-        <p className={`text-sm mb-3`}>{props.bottle.description}</p>
+        <p className={`text-sm mb-3`}>{description}</p>
 
         <table className="w-full">
           <tbody>
             <tr>
               <td><b>Alcohol (By Volume)</b></td>
-              <td>{props.bottle.abv}</td>
+              <td>{abv}</td>
             </tr>
             <tr>
               <td><b>IBU - Bitterness</b></td>
-              <td>{props.bottle.ibu}</td>
+              <td>{ibu}</td>
             </tr>
             <tr>
               <td><b>target_fg</b></td>
-              <td>{props.bottle.target_fg}</td>
+              <td>{target_fg}</td>
             </tr>
             <tr>
               <td><b>target_og</b></td>
-              <td>{props.bottle.target_og}</td>
+              <td>{target_og}</td>
             </tr>
             <tr>
               <td><b>ebc</b></td>
-              <td>{props.bottle.ebc}</td>
+              <td>{ebc}</td>
             </tr>
             <tr>
               <td><b>SRM - Color assessment</b></td>
-              <td>{props.bottle.srm}</td>
+              <td>{srm}</td>
             </tr>
             <tr>
               <td><b>Ph</b></td>
-              <td>{props.bottle.ph}</td>
+              <td>{ph}</td>
             </tr>
             <tr>
               <td><b>Attenuation Level</b></td>
-              <td>{props.bottle.attenuation_level}</td>
+              <td>{attenuation_level}</td>
             </tr>
             <tr>
               <td><b>Volume</b></td>
-              <td>{props.bottle.volume.value} {props.bottle.volume.unit}</td>
+              <td>{volume.value} {volume.unit}</td>
             </tr>
             <tr>
               <td><b>Boil Volume</b></td>
-              <td>{props.bottle.boil_volume.value} {props.bottle.boil_volume.unit}</td>
+              <td>{boil_volume.value} {boil_volume.unit}</td>
             </tr>
             <tr>
               <td><b>Method</b></td>
@@ -68,22 +75,22 @@ export default function BeerDetail(props) {
                   <tbody>
                     <tr>
                       <td><b>Mash temp</b></td>
-                      <td>{props.bottle.method.mash_temp[0].temp.value} {props.bottle.method.mash_temp[0].temp.unit}</td>
+                      <td>{method.mash_temp[0].temp.value} {method.mash_temp[0].temp.unit}</td>
                       <td></td>
                     </tr>
                     <tr>
                       <td><b>Duration:</b></td>
-                      <td>{props.bottle.method.mash_temp[0].duration}</td>
+                      <td>{method.mash_temp[0].duration}</td>
                       <td></td>
                     </tr>
                     <tr>
                       <td><b>Fermentation:</b></td>
-                      <td>{props.bottle.method.fermentation.temp.value}{props.bottle.method.fermentation.temp.unit}</td>
+                      <td>{method.fermentation.temp.value}{method.fermentation.temp.unit}</td>
                       <td></td>
                     </tr>
                     <tr>
                       <td><b>Twist:</b></td>
-                      <td>{props.bottle.method.twist}</td>
+                      <td>{method.twist}</td>
                       <td></td>
                     </tr>
                   </tbody>
@@ -101,7 +108,7 @@ export default function BeerDetail(props) {
               <td>
                 <table className="w-full">
                   <tbody>
-                    {props.bottle.ingredients.malt.map((key, id) =>
+                    {ingredients.malt.map((key, id) =>
                       <tr key={id}>
                         <td>{key.name}</td>
                         <td>{key.amount.value} {key.amount.unit}</td>
@@ -116,7 +123,7 @@ export default function BeerDetail(props) {
               <td>
                 <table className="w-full">
                   <tbody>
-                    {props.bottle.ingredients.hops.map((key, id) =>
+                    {ingredients.hops.map((key, id) =>
                       <tr key={id}>
                         <td>{key.name}</td>
                         <td>{key.amount.value} {key.amount.unit}</td>
@@ -128,18 +135,18 @@ export default function BeerDetail(props) {
             </tr>
             <tr>
               <td><b>Yeast</b></td>
-              <td>{props.bottle.ingredients.yeast}</td>
+              <td>{ingredients.yeast}</td>
             </tr>
           </tbody>
         </table>
 
         <h2 className="font-bold text-lg">Food</h2>
         <ul>
-          {props.bottle.food_pairing.map((food, id) => <li key={id}>- {food}</li>)}
+          {food_pairing.map((food, id) => <li key={id}>- {food}</li>)}
         </ul>
 
-        <p>{props.bottle.brewers_tips}</p>
-        <p className={`text-sm text-gray_2`}>{props.bottle.contributed_by}</p>
+        <p>{brewers_tips}</p>
+        <p className={`text-xs text-gray_2`}>{contributed_by}</p>
       </div>
     </div>
   )

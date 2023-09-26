@@ -15,7 +15,7 @@ This project is a collection of some exercices with react, nextjs and tailwind f
 It is a web-app to track of the customers beer collection.
 
 ## Built with and Using
-- [x] [Nextjs](https://nextjs.org/)
+- [x] [Nextjs](https://nextjs.org/) bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
 - [x] [React](https://react.dev/)
 - [x] [Tailwind](https://tailwindcss.com/)
 - [x] Localstorage - to save entries on the device
@@ -47,17 +47,17 @@ Clean architecture
 
 
 ## Important package.json scripts
-- `dev` starts the development server
-- `build` compiles the application
+
+```bash
+npm run dev
+```
 
 
 # Next Steps
 The concepts of Clean Architecture, SOLID and Functional Programming are reviewd. Next steps:
 
-- [ ] Server Side Rendering
-- [ ] Static Rendering
+- [ ] App Routes / Server Side Rendering / Static Site Generation
 - [ ] Transition animations between pages and states (using [framer motion](https://www.framer.com/motion/use-in-view/))
-- [ ] Routes (Dynamic)
 - [ ] Internationalization
 - [ ] API with another methods (firebase ie.)
 - [ ] State managment with Redux (only used contextApi)
