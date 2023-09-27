@@ -3,18 +3,22 @@ import Link from "next/link";
 import Layout from "../components/layout/Layout";
 import Heading from "../components/ui/Heading";
 import BeerList from "../components/BeerList";
+import { IconRight } from "../components/ui/Icons"
 
 export default function Collection() {
   const { collectionBeers } = useBeerContext();
 
   return (
     <Layout>
-      <Heading title="My Collection" />
+      <Heading title="Sip, Savor, and Collect:"
+        subtitle="Your Beer Journey Begins Here!" />
 
-      <div className="w-full flex justify-center">
-        <Link href="/list"
-          className={`bg-gray text-yellow rounded-xl p-3 text-center mb-6 hover:bg-gray_2 hover:text-white`}>Add beer to Collection</Link>
-      </div>
+      <Link href="/list"
+        className={`w-fit mx-auto flex align-center justify-center bg-gray text-yellow rounded-xl p-3 text-center 
+                mb-10 hover:bg-gray_2 hover:text-white gap-3`}>
+        Add beer to Collection
+        {IconRight}
+      </Link>
 
       <BeerList beers={collectionBeers.data} loading={collectionBeers.loading} showCollectionOnly={true} />
     </Layout>
