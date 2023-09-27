@@ -11,10 +11,9 @@ import { useBeerContext } from "../data/context/BeerContext";
 import Heading from "../components/ui/Heading";
 
 export default function Detail() {
-
   const { allBeers } = useBeerContext();
-
   const router = useRouter();
+  const bottle = router.query.bottle;
 
   const [response, setResponse] = useState({
     data: null,
@@ -25,7 +24,7 @@ export default function Detail() {
     async function fetchData() {
       const beerRepository = new BeerRepository();
       const useCase = new BeerUseCase(beerRepository);
-      const data = await useCase.getBeerById(router.query.bottle);
+      const data = await useCase.getBeerById(bottle);
 
       try {
         setResponse({
@@ -39,7 +38,7 @@ export default function Detail() {
     }
 
     fetchData();
-  }, []);
+  }, [bottle]);
 
   return (
     <Layout>
